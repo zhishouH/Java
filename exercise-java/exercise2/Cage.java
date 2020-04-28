@@ -8,6 +8,7 @@ public class Cage {
             rabbit=35-chick;
             foot=2*chick+4*(35-chick);
             if(foot==94){
+                
                 System.out.println("鸡有："+chick+"只，兔有："+rabbit+"只");
             }
         }
