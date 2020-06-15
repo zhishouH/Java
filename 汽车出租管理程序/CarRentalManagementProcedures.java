@@ -51,21 +51,15 @@ public class CarRentalManagementProcedures {
                 }
                 System.out.println("请选择您需要租赁的车辆：1.第一辆 2.第二辆 3.第三辆");
                 int inputCar = sc.nextInt(); //用户选择车辆序号
+                if(inputCar == 1) {
+                    System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar-1).getModel() + " 品牌：" + cars.get(inputCar-1).getBrand() + " 排量：" + cars.get(inputCar-1).getDisplacement() + " 座位：" + cars.get(inputCar-1).getSeat() + "座 颜色：" +cars.get(inputCar-1).getColor() +  " 车牌号码：" + cars.get(inputCar-1).getCarNumber()+ " 租金：" + cars.get(inputCar-1).getRent() + "元/天");
+                } else if (inputCar == 2) {
+                    System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar-1).getModel() + " 品牌：" + cars.get(inputCar-1).getBrand() + " 排量：" + cars.get(inputCar-1).getDisplacement() + " 座位：" + cars.get(inputCar-1).getSeat() + "座 颜色：" +cars.get(inputCar-1).getColor() +  " 车牌号码：" + cars.get(inputCar-1).getCarNumber()+ " 租金：" + cars.get(inputCar-1).getRent() + "元/天");
+                } else {
+                    System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar-1).getModel() + " 品牌：" + cars.get(inputCar-1).getBrand() + " 排量：" + cars.get(inputCar-1).getDisplacement() + " 座位：" + cars.get(inputCar-1).getSeat() + "座 颜色：" +cars.get(inputCar-1).getColor() +  " 车牌号码：" + cars.get(inputCar-1).getCarNumber()+ " 租金：" + cars.get(inputCar-1).getRent() + "元/天");
+                }
                 System.out.println("请输入租赁时长： 天");
                 int inputDate = sc.nextInt(); //用户输入租赁时长
-                switch (inputCar) { //车辆信息
-                    case 1:
-                        System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar-1).getModel() + " 品牌：" + cars.get(inputCar-1).getBrand() + " 排量：" + cars.get(inputCar-1).getDisplacement() + " 座位：" + cars.get(inputCar-1).getSeat() + "座 颜色：" +cars.get(inputCar-1).getColor() +  " 车牌号码：" + cars.get(inputCar-1).getCarNumber()+ " 租金：" + cars.get(inputCar-1).getRent() + "元/天 租赁时长为：" + inputDate + "天 ");
-                        break;
-                    case 2:
-                        System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" + cars.get(inputCar-1).getModel() + " 品牌：" + cars.get(inputCar-1).getBrand() + " 排量：" + cars.get(inputCar-1).getDisplacement() + " 座位：" + cars.get(inputCar-1).getSeat() + "座 颜色：" +cars.get(inputCar-1).getColor() +" 车牌号码：" + cars.get(inputCar-1).getCarNumber()+ " 租金：" + cars.get(inputCar-1).getRent() + "元/天 租赁时长为：" + inputDate + "天 ");
-                        break;
-                    case 3:
-                        System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" + cars.get(inputCar-1).getModel() + " 品牌：" + cars.get(inputCar-1).getBrand() + " 排量：" + cars.get(inputCar-1).getDisplacement() + " 座位：" + cars.get(inputCar-1).getSeat() + "座 颜色：" +cars.get(inputCar-1).getColor() + " 车牌号码：" + cars.get(inputCar-1).getCarNumber()+ " 租金：" + cars.get(inputCar-1).getRent() + "元/天 租赁时长为：" + inputDate + "天 ");
-                        break;
-                    default:
-                        System.out.println("对不起！没有该车辆。");
-                }
                 System.out.println("请选择你的用户身份：1.新客户 2.老客户");
                 int inputIdentity = sc.nextInt();//用户输入身份
                 if (inputIdentity == 1) { //新客户
@@ -83,7 +77,7 @@ public class CarRentalManagementProcedures {
                     System.out.println("支付￥299立即升级为至尊用户可享受七折优惠");
                     System.out.println("是否升级为其他等级:1.是 2.否");
                     int inputWhether = sc.nextInt();
-                    if (inputWhether == 1) {
+                    if (inputWhether == 1) { //确认升级用户等级
                         System.out.println("请选择用户等级：1.铂金用户 2.钻石用户 3.至尊用户");
                         int inputGrade = sc.nextInt();
                         if (inputGrade == 1) {
@@ -93,35 +87,34 @@ public class CarRentalManagementProcedures {
                         } else {
                             if (inputGrade == 3) {
                                 System.out.println("您已升级为至尊用户，请先支付￥299");
-                            } else {
-                                System.out.println("没有更多等级");
                             }
                         }
-                        Client newUser = new Client(inputName,inputNumber,inputIdCard,inputDriveLicense,inputGrade+1);
-                        clients.add(newUser);
-
-                    } else {
+                            Client newUser = new Client(inputName,inputNumber,inputIdCard,inputDriveLicense,inputGrade+1);
+                            clients.add(newUser);
+                    } else { //不升级用户等级，此时用户等级为1
                         if (inputWhether == 2) {
                             Client newUser = new Client(inputName,inputNumber,inputIdCard,inputDriveLicense,1);
                             clients.add(newUser);
                         }
                     }
-                    System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码" +clients.get(clients.size()-1).getNumber()+ " 身份证号码" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
+                    System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码:" +clients.get(clients.size()-1).getNumber()+ " 身份证号码:" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码:" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
                     System.out.println("请确认以上信息. 1.确认 2.取消");
                     inputWhether = sc.nextInt();
                     if (inputWhether == 1) {
                         int userGrade = clients.get(clients.size()-1).getGrade();
                         if (userGrade == 1) { //支付一半，剩余归还车辆时结清
-                            System.out.println("您需要支付的租金为：" + (cars.get(inputCar-1).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar-1).getRent() * inputDate) * 0.5) + "元");
+                            System.out.println("您需要支付的租金为：" + (cars.get(inputCar-1).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar-1).getRent() * inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                         } else if(userGrade == 2){
-                            System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.9)* inputDate) * 0.5) + "元");
+                            System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.9)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                         } else if (userGrade == 3) {
-                            System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.8)* inputDate) * 0.5) + "元");
+                            System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.8)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                         } else {
                             if (userGrade == 4) {
-                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.7)* inputDate) * 0.5) + "元");
+                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.7)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                             }
                         }
+                        System.out.println("祝你用车愉快！");
+                        cars.remove(inputCar-1);
                     } else {
                         System.out.println("欢迎下次使用！");
                     }
@@ -139,32 +132,29 @@ public class CarRentalManagementProcedures {
                         int inputGrade = sc.nextInt();
                         Client newUser = new Client(inputName,inputNumber,inputIdCard,inputDriveLicense,inputGrade);
                         clients.add(newUser);
-                        System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码" +clients.get(clients.size()-1).getNumber()+ " 身份证号码" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
+                        System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码：" +clients.get(clients.size()-1).getNumber()+ " 身份证号码：" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码：" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
                         System.out.println("请确认以上信息. 1.确认 2.取消");
                         int inputWhether = sc.nextInt();
                         if (inputWhether == 1) {
                             if ( inputGrade == 1) { //支付一半，剩余归还车辆时结清
-                                System.out.println("您需要支付的租金为：" + (cars.get(inputCar-1).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar-1).getRent() * inputDate) * 0.5) + "元");
+                                System.out.println("您需要支付的租金为：" + (cars.get(inputCar-1).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar-1).getRent() * inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                             } else if(inputGrade== 2){
-                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.9)* inputDate) * 0.5) + "元");
+                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.9)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                             } else if (inputGrade == 3) {
-                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.8)* inputDate) * 0.5) + "元");
+                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.8)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                             } else {
                                 if (inputGrade == 4) {
-                                    System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.7)* inputDate) * 0.5) + "元");
+                                    System.out.println("您需要支付的租金为：" + ((cars.get(inputCar-1).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar-1).getRent() * 0.7)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                                 }
                             }
-
+                            System.out.println("祝你用车愉快！");
+                            cars.remove(inputCar-1);
                         } else {
-                            System.out.println("欢迎下次使用！");
+                            System.out.println("欢迎您下次使用！");
                         }
-
                     }
                 }
-                cars.remove(inputCar-1);
-                System.out.println("祝你用车愉快！");
                 System.out.println("当前车库剩余车辆为：" +cars.size());
-
                 //选择1.客车，结束
             } else if(inputModel == 2) { //选择2.面包车，开始
                 for (int i = 0 ; i < 3 ; i++) {
@@ -172,21 +162,15 @@ public class CarRentalManagementProcedures {
                 }
                 System.out.println("请选择您需要租赁的车辆：1.第一辆 2.第二辆 3.第三辆");
                 int inputCar = sc.nextInt(); //用户选择车辆序号
+                if(inputCar == 1) {
+                    System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar+3).getModel() + " 品牌：" + cars.get(inputCar+3).getBrand() + " 排量：" + cars.get(inputCar+3).getDisplacement() + " 座位：" + cars.get(inputCar+3).getSeat() + "座 颜色：" +cars.get(inputCar+3).getColor() +  " 车牌号码：" + cars.get(inputCar+3).getCarNumber()+ " 租金：" + cars.get(inputCar+3).getRent() + "元/天");
+                } else if (inputCar == 2) {
+                    System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar+3).getModel() + " 品牌：" + cars.get(inputCar+3).getBrand() + " 排量：" + cars.get(inputCar+3).getDisplacement() + " 座位：" + cars.get(inputCar+3).getSeat() + "座 颜色：" +cars.get(inputCar+3).getColor() +  " 车牌号码：" + cars.get(inputCar+3).getCarNumber()+ " 租金：" + cars.get(inputCar+3).getRent() + "元/天");
+                } else {
+                    System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar+3).getModel() + " 品牌：" + cars.get(inputCar+3).getBrand() + " 排量：" + cars.get(inputCar+3).getDisplacement() + " 座位：" + cars.get(inputCar+3).getSeat() + "座 颜色：" +cars.get(inputCar+3).getColor() +  " 车牌号码：" + cars.get(inputCar+3).getCarNumber()+ " 租金：" + cars.get(inputCar+3).getRent() + "元/天");
+                }
                 System.out.println("请输入租赁时长： 天");
                 int inputDate = sc.nextInt(); //用户输入租赁时长
-                switch (inputCar) { //车辆信息
-                    case 1:
-                        System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar+3).getModel() + " 品牌：" + cars.get(inputCar+3).getBrand() + " 排量：" + cars.get(inputCar+3).getDisplacement() + " 座位：" + cars.get(inputCar+3).getSeat() + "座 颜色：" +cars.get(inputCar+3).getColor() + " 车牌号码：" + cars.get(inputCar+3).getCarNumber()+ " 租金：" + cars.get(inputCar+3).getRent() + "元/天 租赁时长为：" + inputDate + "天 ");
-                        break;
-                    case 2:
-                        System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" + cars.get(inputCar+3).getModel() + " 品牌：" + cars.get(inputCar+3).getBrand() + " 排量：" + cars.get(inputCar+3).getDisplacement() + " 座位：" + cars.get(inputCar+3).getSeat() + "座 颜色：" +cars.get(inputCar+3).getColor() + " 车牌号码：" + cars.get(inputCar+3).getCarNumber()+ " 租金：" + cars.get(inputCar+3).getRent() + "元/天 租赁时长为：" + inputDate + "天 ");
-                        break;
-                    case 3:
-                        System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" + cars.get(inputCar+3).getModel() + " 品牌：" + cars.get(inputCar+3).getBrand() + " 排量：" + cars.get(inputCar+3).getDisplacement() + " 座位：" + cars.get(inputCar+3).getSeat() + "座 颜色：" +cars.get(inputCar+3).getColor() +" 车牌号码：" + cars.get(inputCar+3).getCarNumber()+ " 租金：" + cars.get(inputCar+3).getRent() + "元/天 租赁时长为：" + inputDate + "天 ");
-                        break;
-                    default:
-                        System.out.println("对不起！没有该车辆。");
-                }
                 System.out.println("请选择你的用户身份：1.新客户 2.老客户");
                 int inputIdentity = sc.nextInt();//用户输入身份
                 if (inputIdentity == 1) { //新客户
@@ -218,29 +202,30 @@ public class CarRentalManagementProcedures {
                         }
                         Client newUser = new Client(inputName,inputNumber,inputIdCard,inputDriveLicense,inputGrade+1);
                         clients.add(newUser);
-
                     } else { //取消升级
                         if (inputWhether == 2) {
                             Client newUser = new Client(inputName,inputNumber,inputIdCard,inputDriveLicense,1);
                             clients.add(newUser);
                         }
                     }
-                    System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码" +clients.get(clients.size()-1).getNumber()+ " 身份证号码" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
+                    System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码:" +clients.get(clients.size()-1).getNumber()+ " 身份证号码:" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码:" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
                     System.out.println("请确认以上信息. 1.确认 2.取消");
                     inputWhether = sc.nextInt();
                     if (inputWhether == 1) {
                         int userGrade = clients.get(clients.size()-1).getGrade();
                         if (userGrade == 1) { //支付一半，剩余归还车辆时结清
-                            System.out.println("您需要支付的租金为：" + (cars.get(inputCar+3).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar+3).getRent() * inputDate) * 0.5) + "元");
+                            System.out.println("您需要支付的租金为：" + (cars.get(inputCar+3).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar+3).getRent() * inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                         } else if(userGrade == 2){
-                            System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.9)* inputDate) * 0.5) + "元");
+                            System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.9)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                         } else if (userGrade == 3) {
-                            System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.8)* inputDate) * 0.5) + "元");
+                            System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.8)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                         } else {
                             if (userGrade == 4) {
-                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.7)* inputDate) * 0.5) + "元");
+                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.7)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                             }
                         }
+                        System.out.println("祝你用车愉快！");
+                        cars.remove(inputCar+2);
                     } else {
                         System.out.println("欢迎下次使用！");
                     }
@@ -258,28 +243,28 @@ public class CarRentalManagementProcedures {
                         int inputGrade = sc.nextInt();
                         Client newUser = new Client(inputName,inputNumber,inputIdCard,inputDriveLicense,inputGrade);
                         clients.add(newUser);
-                        System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码" +clients.get(clients.size()-1).getNumber()+ " 身份证号码" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
+                        System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码:" +clients.get(clients.size()-1).getNumber()+ " 身份证号码:" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码:" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
                         System.out.println("请确认以上信息. 1.确认 2.取消");
                         int inputWhether = sc.nextInt();
                         if (inputWhether == 1) {
                             if ( inputGrade == 1) { //支付一半，剩余归还车辆时结清
-                                System.out.println("您需要支付的租金为：" + (cars.get(inputCar+3).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar+3).getRent() * inputDate) * 0.5) + "元");
+                                System.out.println("您需要支付的租金为：" + (cars.get(inputCar+3).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar+3).getRent() * inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                             } else if(inputGrade== 2){
-                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.9)* inputDate) * 0.5) + "元");
+                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.9)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                             } else if (inputGrade == 3) {
-                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.8)* inputDate) * 0.5) + "元");
+                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.8)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                             } else {
                                 if (inputGrade == 4) {
-                                    System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.7)* inputDate) * 0.5) + "元");
+                                    System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+3).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+3).getRent() * 0.7)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                                 }
                             }
+                            System.out.println("祝你用车愉快！");
+                            cars.remove(inputCar+2);
                         } else {
                             System.out.println("欢迎下次使用！");
                         }
                     }
                 }
-                cars.remove(inputCar+2);
-                System.out.println("祝你用车愉快！");
                 System.out.println("当前车库剩余车辆为：" +cars.size());
             //选择2.面包车，结束
             } else {
@@ -289,21 +274,15 @@ public class CarRentalManagementProcedures {
                     }
                     System.out.println("请选择您需要租赁的车辆：1.第一辆 2.第二辆 3.第三辆");
                     int inputCar = sc.nextInt(); //用户选择车辆序号
+                    if(inputCar == 1) {
+                        System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar+5).getModel() + " 品牌：" + cars.get(inputCar+5).getBrand() + " 排量：" + cars.get(inputCar+5).getDisplacement() + " 座位：" + cars.get(inputCar+5).getSeat() + "座 颜色：" +cars.get(inputCar+5).getColor() +  " 车牌号码：" + cars.get(inputCar+5).getCarNumber()+ " 租金：" + cars.get(inputCar+5).getRent() + "元/天");
+                    } else if (inputCar == 2) {
+                        System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar+5).getModel() + " 品牌：" + cars.get(inputCar+5).getBrand() + " 排量：" + cars.get(inputCar+5).getDisplacement() + " 座位：" + cars.get(inputCar+5).getSeat() + "座 颜色：" +cars.get(inputCar+5).getColor() +  " 车牌号码：" + cars.get(inputCar+5).getCarNumber()+ " 租金：" + cars.get(inputCar+5).getRent() + "元/天");
+                    } else {
+                        System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar+5).getModel() + " 品牌：" + cars.get(inputCar+5).getBrand() + " 排量：" + cars.get(inputCar+5).getDisplacement() + " 座位：" + cars.get(inputCar+5).getSeat() + "座 颜色：" +cars.get(inputCar+5).getColor() +  " 车牌号码：" + cars.get(inputCar+5).getCarNumber()+ " 租金：" + cars.get(inputCar+5).getRent() + "元/天");
+                    }
                     System.out.println("请输入租赁时长： 天");
                     int inputDate = sc.nextInt(); //用户输入租赁时长
-                    switch (inputCar) { //车辆信息
-                        case 1:
-                            System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" +  cars.get(inputCar+5).getModel() + " 品牌：" + cars.get(inputCar+5).getBrand() + " 排量：" + cars.get(inputCar+5).getDisplacement() + " 座位：" + cars.get(inputCar+5).getSeat() + "座 颜色：" +cars.get(inputCar+5).getColor() + " 车牌号码：" + cars.get(inputCar+5).getCarNumber()+ " 租金：" + cars.get(inputCar+5).getRent() + "元/天 租赁时长为：" + inputDate + "天 ");
-                            break;
-                        case 2:
-                            System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" + cars.get(inputCar+5).getModel() + " 品牌：" + cars.get(inputCar+5).getBrand() + " 排量：" + cars.get(inputCar+5).getDisplacement() + " 座位：" + cars.get(inputCar+5).getSeat() + "座 颜色：" +cars.get(inputCar+5).getColor() + " 车牌号码：" + cars.get(inputCar+5).getCarNumber()+ " 租金：" + cars.get(inputCar+5).getRent() + "元/天 租赁时长为：" + inputDate + "天 ");
-                            break;
-                        case 3:
-                            System.out.println("车辆信息：车辆号："+ inputCar +" 车型:" + cars.get(inputCar+5).getModel() + " 品牌：" + cars.get(inputCar+5).getBrand() + " 排量：" + cars.get(inputCar+5).getDisplacement() + " 座位：" + cars.get(inputCar+5).getSeat() + "座 颜色：" +cars.get(inputCar+5).getColor() + " 车牌号码：" + cars.get(inputCar+5).getCarNumber()+ " 租金：" + cars.get(inputCar+5).getRent() + "元/天 租赁时长为：" + inputDate + "天 ");
-                            break;
-                        default:
-                            System.out.println("对不起！没有该车辆。");
-                    }
                     System.out.println("请选择你的用户身份：1.新客户 2.老客户");
                     int inputIdentity = sc.nextInt();//用户输入身份
                     if (inputIdentity == 1) { //新客户
@@ -342,22 +321,24 @@ public class CarRentalManagementProcedures {
                                 clients.add(newUser);
                             }
                         }
-                        System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码" +clients.get(clients.size()-1).getNumber()+ " 身份证号码" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
+                        System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码：" +clients.get(clients.size()-1).getNumber()+ " 身份证号码：" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码：" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
                         System.out.println("请确认以上信息. 1.确认 2.取消");
                         inputWhether = sc.nextInt();
                         if (inputWhether == 1) {
                             int userGrade = clients.get(clients.size()-1).getGrade();
                             if (userGrade == 1) { //支付一半，剩余归还车辆时结清
-                                System.out.println("您需要支付的租金为：" + (cars.get(inputCar+5).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar+5).getRent() * inputDate) * 0.5) + "元");
+                                System.out.println("您需要支付的租金为：" + (cars.get(inputCar+5).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar+5).getRent() * inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                             } else if(userGrade == 2){
-                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.9)* inputDate) * 0.5) + "元");
+                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.9)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                             } else if (userGrade == 3) {
-                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.8)* inputDate) * 0.5) + "元");
+                                System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.8)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                             } else {
                                 if (userGrade == 4) {
-                                    System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.7)* inputDate) * 0.5) + "元");
+                                    System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.7)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                                 }
                             }
+                            System.out.println("祝你用车愉快！");
+                            cars.remove(inputCar+5);
                         } else {
                             System.out.println("欢迎下次使用！");
                         }
@@ -375,31 +356,29 @@ public class CarRentalManagementProcedures {
                             int inputGrade = sc.nextInt();
                             Client newUser = new Client(inputName,inputNumber,inputIdCard,inputDriveLicense,inputGrade);
                             clients.add(newUser);
-                            System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码" +clients.get(clients.size()-1).getNumber()+ " 身份证号码" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
+                            System.out.println("用户信息：姓名："+clients.get(clients.size()-1).getName() + " 电话号码：" +clients.get(clients.size()-1).getNumber()+ " 身份证号码：" +clients.get(clients.size()-1).getIdCard()+ " 驾驶证号码：" +clients.get(clients.size()-1).getDriveLicense()+ " 用户等级：" +clients.get(clients.size()-1).getGrade());
                             System.out.println("请确认以上信息. 1.确认 2.取消");
                             int inputWhether = sc.nextInt();
                             if (inputWhether == 1) {
                                 if ( inputGrade == 1) { //支付一半，剩余归还车辆时结清
-                                    System.out.println("您需要支付的租金为：" + (cars.get(inputCar+5).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar+5).getRent() * inputDate) * 0.5) + "元");
+                                    System.out.println("您需要支付的租金为：" + (cars.get(inputCar+5).getRent() * inputDate) + "元 请预先支付租金的50%：" + ((cars.get(inputCar+5).getRent() * inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                                 } else if(inputGrade== 2){
-                                    System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.9)* inputDate) * 0.5) + "元");
+                                    System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.9) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.9)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                                 } else if (inputGrade == 3) {
-                                    System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.8)* inputDate) * 0.5) + "元");
+                                    System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.8) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.8)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                                 } else {
                                     if (inputGrade == 4) {
-                                        System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.7)* inputDate) * 0.5) + "元");
+                                        System.out.println("您需要支付的租金为：" + ((cars.get(inputCar+5).getRent() * 0.7) * inputDate) + "元 请预先支付租金的50%：" + (((cars.get(inputCar+5).getRent() * 0.7)* inputDate) * 0.5) + "元 剩余部分租金将于车辆归还时结清");
                                     }
                                 }
                                 cars.remove(inputCar+5);
                                 System.out.println("祝你用车愉快！");
-                                System.out.println("当前车库剩余车辆为：" +cars.size());
-
                             } else {
                                 System.out.println("欢迎下次使用！");
                             }
                         }
                     }
-
+                    System.out.println("当前车库剩余车辆为：" +cars.size());
                 } else {
                     System.out.println("对不起！没有更多车型");
                     System.out.println("欢迎下次使用！");
@@ -453,7 +432,7 @@ public class CarRentalManagementProcedures {
                     System.out.println("请输入您的用户等级：1、普通用户 2、铂金用户  3、钻石用户  4、至尊用户");
                     int inputGrade = sc.nextInt();
                     if (inputGrade == 1) {
-                        System.out.println("您需要支付剩余租金为： " + ((cars.get(cars.size()-1).getRent() * 0.5) * inputDate)+ "元" );
+                        System.out.println("您需要支付剩余租金为： " + ((cars.get(cars.size()-1).getRent() * 0.5) * inputDate)+ "元 " );
                     } else if (inputGrade == 2) {
                         System.out.println("您需要支付剩余租金为：" + (((cars.get(cars.size()-1).getRent() * 0.9)* 0.5) * inputDate)+ "元");
                     } else if (inputGrade == 3) {
@@ -463,17 +442,15 @@ public class CarRentalManagementProcedures {
                     } else {
                         System.out.println("无该业务，欢迎下次使用！");
                     }
+                    System.out.println("欢迎您下次使用！");
                     System.out.println("车库剩余车辆为：" + cars.size() + "辆");
-
-                } else {
-                    System.out.println("对不起！没有更多车型");
                 }
-
-
-
-
+            }else {
+                System.out.println("对不起！没有该选项");
+                System.out.println("欢迎您下次使用！");
             }
-        //汽车归还功能结束
+
+            //汽车归还功能结束
         }
     }
 }
