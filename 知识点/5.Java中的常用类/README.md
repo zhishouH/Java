@@ -8,9 +8,10 @@
 > 二、System类与Runtime类
   - 1、System类
   - 2、Runtime类
-  
-> 三、Math类与Random类
 
+> 三、Math类与Random类
+  - 1、Math类
+  - 2、Random类
 > 四、包装类
 
 > 五、日期与时间类
