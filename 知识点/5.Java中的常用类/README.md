@@ -24,3 +24,6 @@
   - 3、JDK8的日期与时间类
 
 > 六、格式化类
+  - 1、DateFormat类
+  - 2、SimpleDateFormat类
+  - 3、DateTimeFormatter类
