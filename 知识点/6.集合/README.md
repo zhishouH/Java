@@ -16,8 +16,14 @@
   - 3、LinkedList集合
 
 > 四、Collection集合遍历
+  - 1、Iterator遍历集合
+  - 2、foreach遍历集合
+  - 3、JDK8的forEach遍历集合
 
 > 五、Set接口
+  - 1、Set接口简介
+  - 2、HashSet集合
+  - 3、TreeSet集合
 
 > 六、Map接口
 
